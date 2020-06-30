@@ -10,7 +10,7 @@ public class U2 extends Rocket {
 }
     public boolean launch(){
         //odds of exploding during launch
-        explosionChance = 0.04 * ((double)currentWeight/maxWeight);
+        explosionChance = 4 * ((double)currentWeight/maxWeight);
         int random = (int) (Math.random() * 100) + 1;
         //for debugging:
 //        System.out.println("Explosion chance: " + explosionChance);
@@ -18,9 +18,9 @@ public class U2 extends Rocket {
     }
     public boolean land() {
         //odds of exploding during landing
-        crashChance = 0.08 * ((double)currentWeight/maxWeight);
+        crashChance = 8 * ((double)currentWeight/maxWeight);
         //for debugging:
-//        System.out.println("Crash chance: " + crashChance);
+        System.out.println("Crash chance: " + crashChance);
         int random2 = (int) (Math.random() * 100) + 1;
         return random2 > crashChance;
     }
