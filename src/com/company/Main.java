@@ -7,18 +7,15 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-
         Simulation s1 = new Simulation();
-        //U1 Phase 1
         File file1 = new File("phase-1.txt");
-//        s1.loadU1(file1);
-        //U1 Phase 2
         File file2 = new File("phase-2.txt");
-//        s1.loadU1(file2);
-        //U2 Phase 1
-//        s1.loadU2(file1);
-        //U2 Phase 2
-//        s1.loadU2(file2);
 
-        s1.runSimulation();
+        System.out.println("U1 Total Budget: ");
+        int U1totalBudget = s1.runSimulation(s1.loadU1(file1)) + s1.runSimulation(s1.loadU1(file2));
+        System.out.println(U1totalBudget);
+
+        System.out.println("U2 Total Budget: ");
+        int U2totalBudget = s1.runSimulation(s1.loadU2(file1)) + s1.runSimulation(s1.loadU2(file2));
+        System.out.println(U2totalBudget);
     }}

@@ -73,20 +73,29 @@ public class Simulation {
         return U2List;
     }
 
-    public int runSimulation(){
-        File file1 = new File("phase-1.txt");
-        File file2 = new File("phase-2.txt");
-        ArrayList<U1> list = loadU1(file1);
-        ArrayList<U1> list2 = loadU1(file2);
+    public int runSimulation(ArrayList<Rocket> list){
+//        File file1 = new File("phase-1.txt");
+//        File file2 = new File("phase-2.txt");
+//        ArrayList<Rocket> list;
+//        if(type.equals("U1")){
+//        list = loadU1(file1);
+//        ArrayList<U1> list2 = loadU1(file2);
+//        list.addAll(list2);
+//        } else if (type.equals("U2")){
+//            list = loadU2(file1);
+//            ArrayList<U2> list2 = loadU2(file2);
+//            list.addAll(list2);
+//        }
         int budget = 0;
         int crashCount = 0;
-        for(U1 rocket : list){
+        for(Rocket rocket : list){
             rocket.launch();
             while(!rocket.launch()){
                 crashCount++;
                 rocket.launch();
                 budget += rocket.cost;
             }
+//            System.out.println("Cost? " + rocket.cost);
             budget += rocket.cost;
             rocket.land();
             while(!rocket.land()){
@@ -95,23 +104,8 @@ public class Simulation {
                 budget += rocket.cost;
             }
         }
-        for(U1 rocket : list2){
-            rocket.launch();
-            while(!rocket.launch()){
-                crashCount++;
-                rocket.launch();
-                budget += rocket.cost;
-            }
-            budget += rocket.cost;
-            rocket.land();
-            while(!rocket.land()){
-                crashCount++;
-                rocket.land();
-                budget += rocket.cost;
-            }
-        }
-       System.out.println("Crashes: " + crashCount);
-       System.out.println("U1 Total Budget: " + budget);
+//       System.out.println("Crashes: " + crashCount);
+//       System.out.println(budget + " million dollars.");
         return budget;
     }
 }

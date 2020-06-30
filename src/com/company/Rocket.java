@@ -1,6 +1,7 @@
 package com.company;
 
 public class Rocket implements SpaceShip {
+    public int cost;
     int currentWeight;
     int maxWeight;
     public boolean launch(){
