@@ -11,12 +11,14 @@ public class Main {
         Simulation s1 = new Simulation();
         //U1 Phase 1
         File file1 = new File("phase-1.txt");
-//        s1.U1runPhase(file1);
+//        s1.loadU1(file1);
         //U1 Phase 2
         File file2 = new File("phase-2.txt");
-//        s1.U1runPhase(file2);
+//        s1.loadU1(file2);
         //U2 Phase 1
-//        s1.U2runPhase(file1);
+//        s1.loadU2(file1);
         //U2 Phase 2
-        s1.U2runPhase(file2);
+//        s1.loadU2(file2);
+
+        s1.runSimulation();
     }}

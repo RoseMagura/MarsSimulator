@@ -1,9 +1,9 @@
 package com.company;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.Scanner;
 import java.io.File;
-
 
 public class Simulation {
     public ArrayList loadItems(File file){
@@ -32,14 +32,14 @@ public class Simulation {
         return list;
     }
 
-    public ArrayList U1runPhase(File file){ //Add parameter for rocket type?
+    public ArrayList loadU1(File file){ //Take item list as a parameter?
         ArrayList<Item> items = loadItems(file);
         ArrayList<U1> U1List = new ArrayList<U1>();
         U1 ship = new U1();
         U1List.add(ship);
         for(Item i: items){
             int combo = ship.currentWeight + i.weight;
-            if (combo <= ship.maxWeight) {
+            if (ship.canCarry(i)) {
                 ship.carry(i);
             } else{
                 U1List.add(ship);
@@ -47,20 +47,19 @@ public class Simulation {
                 ship.carry(i);
             }
         }
-        System.out.println((U1List.size()));
-        for (U1 u1 : U1List) {
-            System.out.println(u1.toString());
-        }
+//        for (U1 u1 : U1List) {
+//            System.out.println(u1.toString());
+//        }
         return U1List;
     }
-    public ArrayList U2runPhase(File file){ //Add parameter for rocket type?
+    public ArrayList loadU2(File file){ //Add parameter for rocket type?
         ArrayList<Item> items = loadItems(file);
         ArrayList<U2> U2List = new ArrayList<U2>();
         U2 ship = new U2();
         U2List.add(ship);
         for(Item i: items){
             int combo = ship.currentWeight + i.weight;
-            if (combo <= ship.maxWeight) {
+            if (ship.canCarry(i)) {
                 ship.carry(i);
             } else{
                 U2List.add(ship);
@@ -68,11 +67,52 @@ public class Simulation {
                 ship.carry(i);
             }
         }
-        System.out.println((U2List.size()));
-        for (U2 U2 : U2List) {
-            System.out.println(U2.toString());
-        }
+//        for (U2 U2 : U2List) {
+//            System.out.println(U2.toString());
+//        }
         return U2List;
+    }
+
+    public int runSimulation(){
+        File file1 = new File("phase-1.txt");
+        File file2 = new File("phase-2.txt");
+        ArrayList<U1> list = loadU1(file1);
+        ArrayList<U1> list2 = loadU1(file2);
+        int budget = 0;
+        int crashCount = 0;
+        for(U1 rocket : list){
+            rocket.launch();
+            while(!rocket.launch()){
+                crashCount++;
+                rocket.launch();
+                budget += rocket.cost;
+            }
+            budget += rocket.cost;
+            rocket.land();
+            while(!rocket.land()){
+                crashCount++;
+                rocket.land();
+                budget += rocket.cost;
+            }
+        }
+        for(U1 rocket : list2){
+            rocket.launch();
+            while(!rocket.launch()){
+                crashCount++;
+                rocket.launch();
+                budget += rocket.cost;
+            }
+            budget += rocket.cost;
+            rocket.land();
+            while(!rocket.land()){
+                crashCount++;
+                rocket.land();
+                budget += rocket.cost;
+            }
+        }
+       System.out.println("Crashes: " + crashCount);
+       System.out.println("U1 Total Budget: " + budget);
+        return budget;
     }
 }
 
