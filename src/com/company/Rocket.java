@@ -1,8 +1,8 @@
 package com.company;
 
 public class Rocket implements SpaceShip {
-    int currentWeight = 0;
-    int maxWeight = 0;
+    int currentWeight;
+    int maxWeight;
     public boolean launch(){
         return true;
     }
@@ -16,8 +16,7 @@ public class Rocket implements SpaceShip {
             return true;
         }
     }
-    public int carry(Item item){
+    public void carry(Item item){
         currentWeight += item.weight;
-        return currentWeight;
     }
 }

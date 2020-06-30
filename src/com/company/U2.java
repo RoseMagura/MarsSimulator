@@ -2,8 +2,11 @@ package com.company;
 
 public class U2 extends Rocket {
     int cost = 120000000; //in US dollars
-    int currentWeight = 18; //in tons
-    int maxWeight = 29; //in tons
+
+    public U2() {
+    currentWeight = 18; //in tons
+    maxWeight = 29; //in tons
+}
     public boolean launch(){
         //odds of exploding during launch
         double explosionChance = 0.04 * (double)(currentWeight/maxWeight);
@@ -15,5 +18,8 @@ public class U2 extends Rocket {
         double crashChance = 0.08 * (double)(currentWeight/maxWeight);
         int random2 = (int) (Math.random() * 100) + 1;
         return random2 > crashChance;
+    }
+    public String toString(){
+        return "U2 Weight: " + this.currentWeight;
     }
 }
