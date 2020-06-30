@@ -17,11 +17,12 @@ public class U1 extends Rocket {
     public boolean land() {
         //odds of exploding during landing
         crashChance = 0.01 * ((double)currentWeight/maxWeight);
+//        System.out.println(crashChance);
         int random2 = (int) (Math.random() * 100) + 1;
         return random2 > crashChance;
     }
 
     public String toString(){
-        return "U1 Weight: " + this.currentWeight + " Explosion Chance: " + this.explosionChance;
+        return "U1 Weight: " + this.currentWeight;
     }
 }

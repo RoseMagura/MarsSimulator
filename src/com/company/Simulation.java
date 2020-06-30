@@ -74,18 +74,6 @@ public class Simulation {
     }
 
     public int runSimulation(ArrayList<Rocket> list){
-//        File file1 = new File("phase-1.txt");
-//        File file2 = new File("phase-2.txt");
-//        ArrayList<Rocket> list;
-//        if(type.equals("U1")){
-//        list = loadU1(file1);
-//        ArrayList<U1> list2 = loadU1(file2);
-//        list.addAll(list2);
-//        } else if (type.equals("U2")){
-//            list = loadU2(file1);
-//            ArrayList<U2> list2 = loadU2(file2);
-//            list.addAll(list2);
-//        }
         int budget = 0;
         int crashCount = 0;
         for(Rocket rocket : list){
@@ -95,7 +83,6 @@ public class Simulation {
                 rocket.launch();
                 budget += rocket.cost;
             }
-//            System.out.println("Cost? " + rocket.cost);
             budget += rocket.cost;
             rocket.land();
             while(!rocket.land()){
@@ -104,8 +91,6 @@ public class Simulation {
                 budget += rocket.cost;
             }
         }
-//       System.out.println("Crashes: " + crashCount);
-//       System.out.println(budget + " million dollars.");
         return budget;
     }
 }
